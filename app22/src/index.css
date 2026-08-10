@@ -1,0 +1,125 @@
+@import "tailwindcss";
+@import "@heroui/styles"; 
+.active{
+    color: #00A6F4;
+}
+.hover:hover{
+    cursor: pointer;
+    color: #00A6F4 ;
+}
+.cursor:hover{
+  cursor: pointer;
+}
+
+.button{
+    transition: all .5s linear;
+}
+::-webkit-scrollbar{
+    display: none;
+}
+ 
+.glass {
+  background: rgba(255, 255, 255, 0.2);
+  
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); 
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+}
+.action{
+    border-radius: 20px 100px 10px 10px;
+}
+
+.water-container {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  background: linear-gradient(180deg, #1e3c72 0%, #2a5298 100%);
+  overflow: hidden;
+}
+
+.bubble {
+  position: absolute;
+  bottom: -60px;
+  left: 20%;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+
+  background-image: radial-gradient(
+    circle at 35% 35%,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.4) 20%,
+    rgba(255, 255, 255, 0.1) 60%,
+    rgba(255, 255, 255, 0.5) 100%
+  );
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.6),
+              0 0 15px rgba(255, 255, 255, 0.3);
+
+  animation: floatUp 4s ease-in-out infinite;
+}
+
+.bubble::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) translateX(0) scale(0.8);
+    opacity: 0.2;
+  }
+  20% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-200px) translateX(-15px) scale(1);
+  }
+  100% {
+    transform: translateY(-450px) translateX(15px) scale(1.1);
+    opacity: 0;
+  }
+}
+
+
+.bubble-right {
+  position: absolute;
+  bottom: -60px;
+  right: 15%;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+
+  background-image: radial-gradient(
+    circle at 35% 35%,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.4) 20%,
+    rgba(255, 255, 255, 0.1) 60%,
+    rgba(255, 255, 255, 0.5) 100%
+  );
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.6),
+              0 0 15px rgba(255, 255, 255, 0.3);
+
+  animation: floatUp 4s ease-in-out infinite;
+}
+.hide{
+  visibility: hidden;
+}
+.touch:hover .hide{
+visibility: visible;
+}
+.important{
+  color: rgb(121, 115, 115) !important;
+    transition: all .1s linear;
+
+}
+.important:hover{
+  color: #fff !important;
+  font-weight:500;
+}
