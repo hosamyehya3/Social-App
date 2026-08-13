@@ -11,6 +11,9 @@ import { AuthContextProvider } from './Context/AuthContext';
 import ProtectRoute from './ProtectRoute/ProtectRoute';
 import {QueryClient , QueryClientProvider} from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import PostDetails from './Components/PostDetails/PostDetails';
+ import { ToastContainer } from 'react-toastify';
+import Notifications from './Components/Notifications/Notifications';
 
 const queryClient = new QueryClient()
 let router= createBrowserRouter([
@@ -19,7 +22,9 @@ let router= createBrowserRouter([
     {path : 'reigster' , element : <Reigster/>},
     {index : true , element : <Reigster/>},
     {path : 'profile' , element : <ProtectRoute><Profile/></ProtectRoute>},
+    {path : 'Notifications' , element : <ProtectRoute><Notifications/></ProtectRoute>},
      {path : 'home' , element : <ProtectRoute><Home/></ProtectRoute>},
+     {path : 'PostDetails/:id' , element : <ProtectRoute><PostDetails/></ProtectRoute>},
      {path : '*' , element : <NotFound/>},
   ]}
 ])
@@ -33,6 +38,7 @@ function App() {
 <AuthContextProvider>
     <CounterContextProvider>
   <RouterProvider router={router} />
+<ToastContainer/>
   <ReactQueryDevtools/>
   </CounterContextProvider>
 </AuthContextProvider>

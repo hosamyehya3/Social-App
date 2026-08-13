@@ -5,6 +5,7 @@ import PostCard from '../../PostCard/PostCard';
 import { id } from 'zod/v4/locales';
 import Spinner from '../Spinner/Spinner';
 import { useQuery } from '@tanstack/react-query';
+import CreatePostCard from '../CreatePostCard/CreatePostCard';
 
 
 export default function Home() {
@@ -61,6 +62,10 @@ export default function Home() {
 // }
 function getposts(){
   return axios.get('https://route-posts.routemisr.com/posts' ,{
+    params : {
+      limit : 100 
+      
+    } ,
     headers:{
       Authorization : `Bearer ${localStorage.getItem('token')}`
 
@@ -71,7 +76,14 @@ function getposts(){
 const {data , error , isError , isLoading} = useQuery({
   queryKey:['getAllPosts'] ,
   queryFn : getposts ,
-  staleTime : 3000 
+  staleTime : 3000 ,
+  // refetchOnMount : true ,
+  // refetchOnWindowFocus : true ,
+  // refetchInterval : 1000 ,
+  // refetchOnReconnect : true ,
+// gcTime : 5000 ,
+// retry : 5
+
 })
 
 
@@ -86,7 +98,8 @@ if (error) {
   </div>
 }
   return <>
-{data?.data.data.posts?.map((post)=>{return <PostCard key={post._id} posts={post}/>})}
+  <CreatePostCard/>
+{data?.data.data.posts?.map((post)=>{return <PostCard isSinglePost={false} key={post._id} posts={post}/>})}
   
   </>
 }
