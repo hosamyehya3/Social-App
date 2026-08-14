@@ -4,7 +4,7 @@ import img from "../../assets/5299595.png";
 import { AuthContext } from '../../Context/AuthContext';
 
 export default function Navbar() {
-  let { userToken, setuserToken , userData } = useContext(AuthContext)
+  let { userToken, setuserToken, userData } = useContext(AuthContext)
   let navigate = useNavigate()
   const [isopen, setisopen] = useState(false)
   function LogOut() {
@@ -84,11 +84,15 @@ export default function Navbar() {
             </li></> : ""}
 
           </ul>
-          <div className='px-3 text-white bg-black font-semibold py-1 rounded flex items-center justify-center   '>
-          ProfileName :  {userData?.name}
-          </div>
-        </div>
 
+        </div>
+        <div className='px-5 text-white px-2 bg-black font-semibold py-2 rounded rounded-3xl flex items-center justify-center   '>
+          {userData?.name}
+          <div className='w-[30px] '>
+            <img className='border rounded-3xl mx-2' src={userData?.photo} alt="image" />
+          </div>
+
+        </div>
       </div>
     </nav>
 
