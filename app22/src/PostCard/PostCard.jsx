@@ -3,12 +3,14 @@ import Home from '../Components/Home/Home';
 import CommentCard from '../Components/CommentCard/CommentCard';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { id } from 'zod/v4/locales';
 import Spinner from '../Components/Spinner/Spinner';
 import CreateCommentCard from '../Components/CreateCommentCard/CreateCommentCard';
+import { FaThumbsUp , FaComment , FaShare } from "react-icons/fa";
+import { toast } from 'react-toastify';
 export default function PostCard({posts , isSinglePost=false}) {
-  
+  const query = useQueryClient()
     function getAllCommentsPost(){
      return axios.get(`https://route-posts.routemisr.com/posts/${posts.id}/comments` , {
       headers : {
@@ -32,6 +34,29 @@ export default function PostCard({posts , isSinglePost=false}) {
     }
 
 
+
+
+function makeLikeInPost(){
+  return axios.put(`https://route-posts.routemisr.com/posts/${posts.id}/like` , {}  , {
+    headers: {
+      Authorization : `Bearer ${localStorage.getItem('token')}`
+    }
+  })
+
+}
+const {data:dataOfLike , isPending:Pending , isError:HasError , error:errorOfLike , mutate:FuncLike} = useMutation({
+  mutationFn : makeLikeInPost ,
+  onSuccess : ()=>{
+    query.invalidateQueries({
+      queryKey : ['getAllPosts'] ,
+      
+    })  
+  } ,
+  onError : ()=>{
+    toast.error('Try Again')
+  }
+})
+
   return <>
 {/* <CreateCommentCard PostId={posts.id}/> */}
  <div className="bg-gray-200 p-4 rounded w-1/2 mx-auto mb-5 mt-3 shadow">
@@ -45,16 +70,23 @@ export default function PostCard({posts , isSinglePost=false}) {
   </header>
 </Link>
   {posts.body && <p className="mb-3">{posts.body}</p>}
- {posts.image &&  <img src={posts.image} alt={posts.pody} className="rounded max-h-96 w-full object-cover mb-3" />}
+ {posts.image &&  <img src={posts.image} alt="" className="rounded max-h-96 w-full object-cover mb-3" />}
   <div className="flex justify-between text-gray-600 text-sm font-semibold">
-    <button className="flex items-center space-x-1 hover:text-blue-600">
-      <i className="fas fa-thumbs-up" /><span className='cursor'>{posts.likesCount <= 0 ? "" : posts.likesCount} Like</span>
+      {/* like like */}
+    <button  onClick={FuncLike}  className="flex cursor items-center space-x-1 hover:text-blue-600">
+      <FaThumbsUp size={20}/>
+      <span >{posts.likesCount <= 0 ? "" : posts.likesCount+" Like"  }  </span>
     </button>
-    <button className="flex items-center space-x-1 hover:text-blue-600">
-      <i className="fas fa-comment" /><span className='cursor'>Comment</span>
+      {/* like comment */}
+    <button  className="flex cursor items-center space-x-1 hover:text-blue-600">
+      
+      <FaComment size={20}/>
+      <span>Comment</span>
     </button>
-    <button className="flex items-center space-x-1 hover:text-blue-600">
-      <i className="fas fa-share" /><span className='cursor'>{posts.sharesCount <= 0 ? "" : posts.sharesCount } Share</span>
+    {/* like share */}
+    <button className="flex cursor items-center space-x-1 hover:text-blue-600">
+      <FaShare size={20}/>
+      <span className='cursor'>{posts.sharesCount <= 0 ? "" : posts.sharesCount+" Share" } </span>
     </button>
   </div>
   <CreateCommentCard PostId={posts.id} queryKey={isSinglePost? ['getPostComments'] : ['getAllPosts']}/>

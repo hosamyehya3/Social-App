@@ -123,3 +123,21 @@ visibility: visible;
   color: #fff !important;
   font-weight:500;
 }
+.boxProfile{
+  transition: all .7s ease-in;
+  border-radius:10px 20px 10px 20px  ;
+  border:  1px  solid black;
+}
+.boxProfile:hover{
+  transform: translateY(-2px);
+  background-image: linear-gradient( rgb(85, 85, 228) , rgb(30, 30, 126));
+  cursor: pointer;
+  color: #fff;
+  border:  1px  solid #fff;
+  box-shadow: 0 0 5px #000;
+}
+ @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }

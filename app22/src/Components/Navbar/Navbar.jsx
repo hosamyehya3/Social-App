@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import img from "../../assets/5299595.png";
 import { AuthContext } from '../../Context/AuthContext';
 
@@ -78,21 +78,32 @@ export default function Navbar() {
 
           </ul>
 
-          <ul className=' w-[100px]  font-bold flex flex-col p-4 md:p-0 mt-4 border border-default rounded-base bg-neutral-secondary-soft md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-neutral-primary'>
+          {localStorage.getItem('token') !== null?<>
+        <Link to={'/profile'}>
+        <div className='px-5  boxProfile px-2 bg-transparent font-semibold py-2  flex items-center justify-center '>
+        {userData?.name}
+          
+          <div className='w-[30px] '>
+            <img className='border rounded-3xl mx-2' src={userData?.photo} alt="image" />
+          </div>
+
+        </div></Link></> : ""}
+
+        </div>
+
+  <ul className=' w-[100px]  font-bold flex flex-col p-4 md:p-0 mt-4 border border-default rounded-base bg-neutral-secondary-soft md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-neutral-primary'>
             {userToken !== null ? <>  <li>
               <span onClick={LogOut} className=" hover block py-2 px-3 text-black bg-brand    md:bg-transparent md:text-fg-brand md:p-0" aria-current="page">LOG OUT</span>
             </li></> : ""}
 
           </ul>
 
-        </div>
-        <div className='px-5 text-white px-2 bg-black font-semibold py-2 rounded rounded-3xl flex items-center justify-center   '>
-          {userData?.name}
-          <div className='w-[30px] '>
-            <img className='border rounded-3xl mx-2' src={userData?.photo} alt="image" />
-          </div>
 
-        </div>
+
+
+      
+    
+        
       </div>
     </nav>
 

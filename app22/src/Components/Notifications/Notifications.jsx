@@ -8,7 +8,9 @@ import NotifactionsCard from '../NotifactionsCard/NotifactionsCard'
 export default function Notifications() {
   function GetNotifications(){
     return axios.get('https://route-posts.routemisr.com/notifications?unread=false&page=1&limit=30' , {
+    
       headers : {
+
         Authorization :  `Bearer ${localStorage.getItem('token')}`
       }
     })
@@ -20,6 +22,7 @@ export default function Notifications() {
     queryKey : 'allNotifications' ,
     queryFn : GetNotifications
   })
+ console.log(data);
  
 if (isLoading) {
   return <Spinner/>
@@ -32,10 +35,16 @@ if (isError) {
 
 
 
-  console.log(data?.data.data.notifications);
+  
   
   return <>
- {data?.data.data.notifications.map((note)=>{return  <NotifactionsCard data={note}/> })}
+{data == null? <>
+<div className='flex justify-center italic h-screen text-sky-500 text-4xl font-bold items-center'>
+  <h2>No Notifications</h2>
+  </div>
+</> : ""}
+ {data?.data.data.notifications.map((note)=>{return  <NotifactionsCard data={note}/> }) }
+ 
   
   
   </>
