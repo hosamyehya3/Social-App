@@ -69,16 +69,13 @@ let navigate = useNavigate()
         <div className='w-1/2'>
           <img className='w-full css' src={img} alt="" />
         </div>
-        <div className='my-animate mx-auto rounded-md p-7 w-1/2 mx-auto'>
-      <div className="bg-white w-full index  ">
+        <div className='my-animate mx-auto rounded-md flex items-center justify-center  p-7 w-1/2 mx-auto'>
+      <div className="bg-white w-full index">
           <h2 className='text-center text-2xl font-bold text-sky-500 my-4'>Login Now</h2>
           
           <form onSubmit={handleSubmit(submitForm)}>
             <div className="flex flex-col gap-7">
-              
-           
-              
-              
+
               <div>
                 <Input {...register('email')} aria-label="Email" className="w-full" placeholder="Enter your Email" />
                 {/* <p className='italic text-red-500 font-bold'>{formState.errors.email?.message}</p> */}

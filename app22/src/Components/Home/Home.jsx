@@ -6,6 +6,7 @@ import { id } from 'zod/v4/locales';
 import Spinner from '../Spinner/Spinner';
 import { useQuery } from '@tanstack/react-query';
 import CreatePostCard from '../CreatePostCard/CreatePostCard';
+import useApi from '../../useApi';
 
 
 export default function Home() {
@@ -82,11 +83,12 @@ const {data , error , isError , isLoading} = useQuery({
   // refetchInterval : 1000 ,
   // refetchOnReconnect : true ,
 // gcTime : 5000 ,
-// retry : 5
+// retry : 5 ,
+
 
 })
 
-
+// const {data , error , isError , isLoading} =  useApi()
 
 if ( isLoading ) {  
   return <Spinner/>

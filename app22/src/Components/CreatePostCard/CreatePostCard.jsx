@@ -1,10 +1,13 @@
 import { Avatar, Input, TextArea } from '@heroui/react'
-import React, { useRef, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import { Button, Modal } from "@heroui/react";
 import axios from 'axios';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
+import img2 from '../../assets/avatar55.webp'
+import { AuthContext } from '../../Context/AuthContext';
 export default function CreatePostCard() {
+ const {userData} = useContext(AuthContext)
   const query = useQueryClient()
   const [upLoadedImg, setupLoadedImg] = useState(null)
   let image = useRef(null)
@@ -57,7 +60,10 @@ query.invalidateQueries({queryKey : ['getAllPosts'] })
     <div className="bg-gray-100 p-4 rounded shadow w-1/2 mx-auto mb-5 mt-4">
       <div className='flex gap-4 p-2 items-center'>
         <Avatar>
-          <Avatar.Image alt="John Doe" src="https://img.heroui.chat/image/avatar?w=400&h=400&u=3" />
+          {userData?<> <Avatar.Image alt="John Doe" src={userData?.photo} /></> : <>
+           <Avatar.Image alt="John Doe" src={img2} />
+          </>}
+         
 
         </Avatar>
         <Modal>

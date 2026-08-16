@@ -233,7 +233,7 @@ let navigate = useNavigate()
       <div className="bubble2 bubbleSlow"></div>
       <div className='bubble-right bubbleSlow2'></div>
       <div className='bubble-right2 bubbleSlow2'></div>
-      {/* <div className='bubble-right bubbleSlow'></div> */}
+      <div className='bubble-right bubbleSlow'></div>
         <div className="bg-white w-1/2 mx-auto rounded-md action  p-7">
           <h2 className='text-center text-2xl font-bold text-sky-500 my-4'>Register Now</h2>
           

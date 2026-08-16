@@ -232,3 +232,11 @@ transform:rotate(360deg) ;
 .css{
   border-radius:30px 100px 30px 100px  ;
 }
+.btnn{
+  top: 20px;
+  right: 20px;
+}
+.btnn:hover{
+color: red;
+cursor: pointer;
+}

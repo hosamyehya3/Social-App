@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import img from "../../assets/5299595.png";
+import img2 from "../../assets/avatar55.webp";
 import { AuthContext } from '../../Context/AuthContext';
 
 export default function Navbar() {
@@ -12,6 +13,7 @@ export default function Navbar() {
     localStorage.removeItem('token')
     navigate('/login')
   }
+console.log(userData?.photo);
 
   function toggleNav() {
     if (isopen) {
@@ -78,12 +80,12 @@ export default function Navbar() {
 
           {localStorage.getItem('token') !== null ? <>
             <Link to={'/profile'}>
-              <div className='px-5  boxProfile px-2 bg-transparent font-semibold py-2  flex items-center justify-center '>
+              <div className='px-5 boxProfile px-2 bg-transparent font-semibold py-2  flex items-center justify-center '>
                 {userData?.name}
 
                 <div className='w-[30px] '>
                   {userData ? <>       {userData.photo == "" ? <>
-                    <img className='border rounded-3xl mx-2' src="https://pub-3cba56bacf9f4965bbb0989e07dada12.r2.dev/linked-posts/1786719049936-cea4d73c-1370-420f-90c8-ba932c17b57d-unnamed.webp" alt="" />
+                    <img className='border rounded-3xl mx-2' src={img2} alt="" />
                   </> : <><img className='border rounded-3xl mx-2' src={userData?.photo} alt="" /></>} </> : ""}
 
                 </div>
