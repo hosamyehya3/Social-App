@@ -22,7 +22,10 @@ export default function Notifications() {
     queryKey : 'allNotifications' ,
     queryFn : GetNotifications
   })
- console.log(data);
+
+          
+
+
  
 if (isLoading) {
   return <Spinner/>

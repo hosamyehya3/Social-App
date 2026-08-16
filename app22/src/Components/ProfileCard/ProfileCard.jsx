@@ -44,7 +44,7 @@
 
 
 
-    
+
 //   return <>
 //   <form onSubmit={handleSubmit(createPhoto)}>
 //  <section className="flex justify-center text-sky-500 items-center min-h-screen   p-4">
@@ -121,10 +121,10 @@
 //   </form>
 
 
-  
-  
-  
-  
+
+
+
+
 //   </>
 // }
 
@@ -140,18 +140,15 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 export default function ProfileCard({ userData }) {
-  console.log(userData);
 
-  // 1. Safe Date Formatting
   const dataBirth = userData?.dateOfBirth;
-  const newDate =
-    dataBirth && !isNaN(new Date(dataBirth))
-      ? new Date(dataBirth).toLocaleDateString('en-US', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-        })
-      : '';
+  const newDate = dataBirth && !isNaN(new Date(dataBirth))
+    ? new Date(dataBirth).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    })
+    : '';
 
   const { handleSubmit, register } = useForm({
     defaultValues: {
@@ -159,14 +156,13 @@ export default function ProfileCard({ userData }) {
     },
   });
 
-  // 2. Pass formData directly to the API handler
   function getiImgProfile(formDataPayload) {
     return axios.put(
       `https://route-posts.routemisr.com/users/upload-photo`,
       formDataPayload,
       {
         headers: {
-          token: localStorage.getItem('token'), // Route Misr API usually uses `token` header
+          token: localStorage.getItem('token'), 
         },
       }
     );
@@ -182,7 +178,6 @@ export default function ProfileCard({ userData }) {
     },
   });
 
-  // 3. Clean Submit Handler
   function createPhoto(formDataValues) {
     const file = formDataValues?.photo?.[0];
 
@@ -205,7 +200,7 @@ export default function ProfileCard({ userData }) {
             <div className="absolute -top-20 -right-20 w-40 h-40 bg-sky-500 rounded-full mix-blend-multiply filter blur-xl opacity-70" />
             <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-sky-500 rounded-full mix-blend-multiply filter blur-xl opacity-70" />
             <div className="absolute inset-0 bg-gradient-to-br from-purple-400/10 via-transparent to-blue-400/10 rounded-3xl" />
-            
+
             {/* Image Upload Section */}
             <div className="flex justify-center -mt-20 mb-6 relative z-10 mt-5">
               <div className="relative group cursor-pointer">
@@ -227,7 +222,6 @@ export default function ProfileCard({ userData }) {
               </div>
             </div>
 
-            {/* Profile Info */}
             <div className="text-center mb-6 relative z-10">
               <h2 className="text-3xl font-bold text-white mb-2 tracking-tight">
                 <span className="relative text-sky-500 inline-block">
@@ -252,7 +246,6 @@ export default function ProfileCard({ userData }) {
               {newDate}
             </p>
 
-            {/* Action Buttons */}
             <div className="mt-8 text-center relative z-10">
               <button
                 type="button"
@@ -260,7 +253,7 @@ export default function ProfileCard({ userData }) {
               >
                 Contact Me
               </button>
-              
+
               <button
                 type="submit"
                 disabled={isPending}

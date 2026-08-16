@@ -143,7 +143,7 @@ import { useForm } from 'react-hook-form';
 import * as zod from 'zod'
 import { email, float64 } from 'zod/v4-mini';
 import {zodResolver} from '@hookform/resolvers/zod'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthContext';
 
 
@@ -230,7 +230,10 @@ let navigate = useNavigate()
 </div>
       <div className="bg-gray-200 bubblell water-container min-h-screen p-5 ">
       <div className="bubble"></div>
-      <div className='bubble-right'></div>
+      <div className="bubble2 bubbleSlow"></div>
+      <div className='bubble-right bubbleSlow2'></div>
+      <div className='bubble-right2 bubbleSlow2'></div>
+      {/* <div className='bubble-right bubbleSlow'></div> */}
         <div className="bg-white w-1/2 mx-auto rounded-md action  p-7">
           <h2 className='text-center text-2xl font-bold text-sky-500 my-4'>Register Now</h2>
           
@@ -299,6 +302,9 @@ let navigate = useNavigate()
             </div> }
             <Button isDisabled={isloading} type='submit' className='my-5 button w-full font-bold hover:text-sky-500 hover:bg-white hover:border hover:border-sky-500'>{isloading?'Loading...' : 'Submit'}</Button>
           </form>
+          <div className='border-t-1 border-gray-500 py-3 flex justify-center '>
+        <h2 className='font-bold italic text-gray-500'> Have an account ? <span className='px-2 font-bold text-sky-500'><Link to={'/login'}>Login</Link></span> now</h2>   
+          </div>
         </div>
       </div>
 

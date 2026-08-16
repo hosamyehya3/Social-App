@@ -5,9 +5,9 @@ import { useForm } from 'react-hook-form';
 import * as zod from 'zod'
 import { email, float64 } from 'zod/v4-mini';
 import {zodResolver} from '@hookform/resolvers/zod'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthContext';
-
+import img from '../../assets/couple-users-in-smartphones-with-social-media-icons-vector.jpg'
 
 
 
@@ -65,8 +65,12 @@ let navigate = useNavigate()
 
   return (
     <>
-      <div className="bg-gray-200 min-h-screen p-5">
-        <div className="bg-white w-1/2 mx-auto rounded-md p-7">
+      <div className="bg-gray-200 min-h-screen flex gap-5 justify-between items-center p-5 ">
+        <div className='w-1/2'>
+          <img className='w-full css' src={img} alt="" />
+        </div>
+        <div className='my-animate mx-auto rounded-md p-7 w-1/2 mx-auto'>
+      <div className="bg-white w-full index  ">
           <h2 className='text-center text-2xl font-bold text-sky-500 my-4'>Login Now</h2>
           
           <form onSubmit={handleSubmit(submitForm)}>
@@ -97,7 +101,12 @@ let navigate = useNavigate()
             </div> }
             <Button isDisabled={isloading} type='submit' className='my-5 w-full font-bold hover:text-sky-500 hover:bg-white hover:border hover:border-sky-500'>{isloading?'Loading...' : 'Submit'}</Button>
           </form>
+          <div className=' border-t-2 flex justify-center items-center  border-gray-400 py-3   '>
+            <h2 className='semi-bold italic text-gray-500'>Don't have an account ? <span className='font-bold text-sky-500'><Link to={'/Reigster'}>Register</Link></span> </h2>
+          </div>
         </div>
+        </div>
+  
       </div>
 
 

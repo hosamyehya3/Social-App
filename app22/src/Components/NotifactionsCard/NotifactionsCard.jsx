@@ -1,7 +1,14 @@
 import React from 'react'
 
-export default function NotifactionsCard({data}) {
+export default function NotifactionsCard({data , }) {
     
+let time = data?.createdAt
+const date = new Date(time)
+const year = date.getUTCFullYear();      
+const month = date.getUTCMonth() + 1;    
+const day = date.getUTCDate(); 
+
+
   return <>
   
   <div class='flex w-1/2 my-3 mx-auto flex-col gap-3'>
@@ -32,15 +39,12 @@ export default function NotifactionsCard({data}) {
     
         <div class="ml-3 overflow-hidden">
           <p class="font-medium text-gray-900">{data?.actor.name}</p>
-          <p class="max-w-xs text-sm text-gray-500 truncate">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet,
-            laborum?
+          <p class="max-w-xs text-sm text-gray-500 truncate"> Publish
+          { " "+year +"/"+month+"/"+day }
           </p>
         </div>
       </div>
     </div>
-
-
 
 </div>
   

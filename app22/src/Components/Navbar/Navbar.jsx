@@ -16,11 +16,9 @@ export default function Navbar() {
   function toggleNav() {
     if (isopen) {
       setisopen(false)
-      console.log(4444);
 
     } else {
       setisopen(true)
-      console.log(5555);
 
     }
   }
@@ -78,32 +76,35 @@ export default function Navbar() {
 
           </ul>
 
-          {localStorage.getItem('token') !== null?<>
-        <Link to={'/profile'}>
-        <div className='px-5  boxProfile px-2 bg-transparent font-semibold py-2  flex items-center justify-center '>
-        {userData?.name}
-          
-          <div className='w-[30px] '>
-            <img className='border rounded-3xl mx-2' src={userData?.photo} alt="image" />
-          </div>
+          {localStorage.getItem('token') !== null ? <>
+            <Link to={'/profile'}>
+              <div className='px-5  boxProfile px-2 bg-transparent font-semibold py-2  flex items-center justify-center '>
+                {userData?.name}
 
-        </div></Link></> : ""}
+                <div className='w-[30px] '>
+                  {userData ? <>       {userData.photo == "" ? <>
+                    <img className='border rounded-3xl mx-2' src="https://pub-3cba56bacf9f4965bbb0989e07dada12.r2.dev/linked-posts/1786719049936-cea4d73c-1370-420f-90c8-ba932c17b57d-unnamed.webp" alt="" />
+                  </> : <><img className='border rounded-3xl mx-2' src={userData?.photo} alt="" /></>} </> : ""}
+
+                </div>
+
+              </div></Link></> : ""}
 
         </div>
 
-  <ul className=' w-[100px]  font-bold flex flex-col p-4 md:p-0 mt-4 border border-default rounded-base bg-neutral-secondary-soft md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-neutral-primary'>
-            {userToken !== null ? <>  <li>
-              <span onClick={LogOut} className=" hover block py-2 px-3 text-black bg-brand    md:bg-transparent md:text-fg-brand md:p-0" aria-current="page">LOG OUT</span>
-            </li></> : ""}
+        <ul className=' w-[100px]  font-bold flex flex-col p-4 md:p-0 mt-4 border border-default rounded-base bg-neutral-secondary-soft md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-neutral-primary'>
+          {userToken !== null ? <>  <li>
+            <span onClick={LogOut} className=" hover block py-2 px-3 text-black bg-brand    md:bg-transparent md:text-fg-brand md:p-0" aria-current="page">LOG OUT</span>
+          </li></> : ""}
 
-          </ul>
-
-
+        </ul>
 
 
-      
-    
-        
+
+
+
+
+
       </div>
     </nav>
 
