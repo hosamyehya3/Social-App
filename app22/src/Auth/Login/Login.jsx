@@ -65,11 +65,14 @@ let navigate = useNavigate()
 
   return (
     <>
-      <div className="bg-gray-200 min-h-screen flex gap-5 justify-between items-center p-5 ">
-        <div className='w-1/2'>
-          <img className='w-full css' src={img} alt="" />
+
+
+    
+      <div className="bg-gray-200  sm:block md:block lg:flex  sm:w-full  md:w-full min-h-screen  gap-5 justify-between items-center p-5 ">
+        <div className='sm:w-full md:w-full lg:w-1/2'>
+          <img className='w-full sm:w-full md:w-1/2 md:mx-auto lg:w-full css' src={img} alt="" />
         </div>
-        <div className='my-animate mx-auto rounded-md flex items-center justify-center  p-7 w-1/2 mx-auto'>
+        <div className='my-animate sm:block mx-auto sm:w-full md:w-1/2 md:mx-auto lg:w-1/2 rounded-md lg:flex items-center justify-center  p-7 mx-auto'>
       <div className="bg-white w-full index">
           <h2 className='text-center text-2xl font-bold text-sky-500 my-4'>Login Now</h2>
           

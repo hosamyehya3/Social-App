@@ -66,21 +66,20 @@ const {data:dataOfLike , isPending:Pending , isError:HasError , error:errorOfLik
     toast.error('Try Again')
   }
 })
-console.log(posts);
 
-function postSharePost(){
-  return axios.post(`https://route-posts.routemisr.com/posts/${posts.id}/share` , {
-  "body": JSON.stringify(posts.image) ,
-} , {
+function postShareFunc(){
+  return axios.post(`https://route-posts.routemisr.com/posts/${posts.id}/share` , 
+ { body: posts.body || posts.image }, 
+  {
     headers : {
       Authorization : `Bearer ${localStorage.getItem('token')}`
     }
   }
- 
+
 )
 }
 const {data:ShareData , mutate:ShareFunc} =  useMutation({
-  mutationFn : postSharePost ,
+  mutationFn : postShareFunc ,
   onSuccess : ()=>{
     toast.success('post shared successfully')
     query.invalidateQueries({ queryKey: ['getAllPosts'] })
@@ -92,8 +91,8 @@ const {data:ShareData , mutate:ShareFunc} =  useMutation({
   }
 
 })
+ const ShareImg = posts.image
 
-console.log(ShareData?.data.data.post.sharedPost);
 
     if (isLoading) {
       return <Spinner/>
@@ -109,10 +108,10 @@ console.log(ShareData?.data.data.post.sharedPost);
  <div className="bg-gray-200 p-4 rounded  border-t-4 border-sky-500 w-1/2 mx-auto mb-8 mt-5 shadow">
   <header className="flex justify-between items-center space-x-3 mb-3">
     <Link to={`/PostDetails/${posts.id}`}>    <div className='flex items-center '>
-      
-    <img className='w-10 h-10 rounded-full' src={posts.user.photo} alt={posts.user.name} />
+    <img className='w-10 h-10 rounded-full' src={posts.user?.photo} alt="" />
     <div>
-      <p className="font-semibold">{posts.user.name}</p>
+      
+       <p className="font-semibold">{posts.user.name}</p>
       <p className="text-xs text-gray-500">{posts.createdAt}</p>
     </div>
     </div></Link>
@@ -122,6 +121,7 @@ console.log(ShareData?.data.data.post.sharedPost);
   </header>
 
   {posts.body && <p className="mb-3">{posts.body}</p>}
+  
  {posts.image &&  <img src={posts.image} alt="" className="rounded max-h-96 w-full object-cover mb-3" />}
   <div className="flex justify-between text-gray-600 text-sm font-semibold">
       {/* like like */}
@@ -148,5 +148,12 @@ console.log(ShareData?.data.data.post.sharedPost);
   {/* {data?.data.data.comments.map((comment)=>{return <CommentCard comment={comment}/>})} */}
 </div>
 
+
+
+
+
+
   </>
 }
+ 
+

@@ -80,15 +80,17 @@ console.log(userData?.photo);
 
           {localStorage.getItem('token') !== null ? <>
             <Link to={'/profile'}>
-              <div className='px-5 boxProfile px-2 bg-transparent font-semibold py-2  flex items-center justify-center '>
+              <div className='hidden md:flex lg:flex px-5 boxProfile px-2 bg-transparent font-semibold py-2  flex items-center justify-center '>
                 {userData?.name}
 
-                <div className='w-[30px] '>
+                <div className='  w-[30px]'>
                   {userData ? <>       {userData.photo == "" ? <>
-                    <img className='border rounded-3xl mx-2' src={img2} alt="" />
-                  </> : <><img className='border rounded-3xl mx-2' src={userData?.photo} alt="" /></>} </> : ""}
+                    <img className='border rounded-3xl mx-2 ' src={img2} alt="" />
+                  </> : <><img className='border  rounded-3xl mx-2' src={userData?.photo} alt="" /></>} </> : ""}
 
                 </div>
+
+                
 
               </div></Link></> : ""}
 
@@ -96,7 +98,7 @@ console.log(userData?.photo);
 
         <ul className=' w-[100px]  font-bold flex flex-col p-4 md:p-0 mt-4 border border-default rounded-base bg-neutral-secondary-soft md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-neutral-primary'>
           {userToken !== null ? <>  <li>
-            <span onClick={LogOut} className=" hover block py-2 px-3 text-black bg-brand    md:bg-transparent md:text-fg-brand md:p-0" aria-current="page">LOG OUT</span>
+            <span onClick={LogOut} className=" hover block py-2 px-3 text-black bg-brand  sm:text-[15px]   md:bg-transparent md:text-fg-brand md:p-0" aria-current="page">LOG OUT</span>
           </li></> : ""}
 
         </ul>
