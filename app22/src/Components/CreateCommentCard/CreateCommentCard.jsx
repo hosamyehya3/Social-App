@@ -4,7 +4,7 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 
-export default function CreateCommentCard({PostId , queryKey}) {
+export default function CreateCommentCard({PostId , queryKey , Change }) {
 const query = useQueryClient()
 
 
@@ -22,6 +22,7 @@ const query = useQueryClient()
         }
       })
     }
+    
 const {data , error , isError , isPending , mutate } = useMutation({
   mutationFn : createCommentFunc ,
   onSuccess : ()=>{
@@ -52,7 +53,7 @@ if (data.image[0]) {
 mutate()
     }
   return<>
-<div className='p-3 mt-4 '>
+  {Change?<><div  className='p-3 mt-4 '>
       <form onSubmit={handleSubmit(createComment)}>
       
 <div className="flex items-center mt-1">
@@ -74,6 +75,7 @@ mutate()
 </div>
 
   </form>
-</div>
+</div></> : "" }
+
   </>
 }

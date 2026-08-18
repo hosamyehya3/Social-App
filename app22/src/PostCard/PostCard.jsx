@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import Home from '../Components/Home/Home';
 import CommentCard from '../Components/CommentCard/CommentCard';
 import { Link } from 'react-router-dom';
@@ -13,6 +13,15 @@ import { toast } from 'react-toastify';
 import { AuthContext } from '../Context/AuthContext';
 import DropDown from '../Components/DropDown/DropDown';
 export default function PostCard({posts , isSinglePost=false}) {
+const [Change , setChange] = useState(false)
+function click(){
+  if (Change == false) {
+    setChange(true)
+  }else{
+setChange(false)
+  }
+
+}
   const query = useQueryClient()
  const {userData} = useContext(AuthContext)
     function getAllCommentsPost(){
@@ -57,9 +66,34 @@ const {data:dataOfLike , isPending:Pending , isError:HasError , error:errorOfLik
     toast.error('Try Again')
   }
 })
+console.log(posts);
 
+function postSharePost(){
+  return axios.post(`https://route-posts.routemisr.com/posts/${posts.id}/share` , {
+  "body": JSON.stringify(posts.image) ,
+} , {
+    headers : {
+      Authorization : `Bearer ${localStorage.getItem('token')}`
+    }
+  }
+ 
+)
+}
+const {data:ShareData , mutate:ShareFunc} =  useMutation({
+  mutationFn : postSharePost ,
+  onSuccess : ()=>{
+    toast.success('post shared successfully')
+    query.invalidateQueries({ queryKey: ['getAllPosts'] })
+    query.invalidateQueries({ queryKey: ['getSinglePost'] })
+    
+  },
+  onError : ()=>{
+    toast.error('Share Post Failed ')
+  }
 
+})
 
+console.log(ShareData?.data.data.post.sharedPost);
 
     if (isLoading) {
       return <Spinner/>
@@ -71,9 +105,11 @@ const {data:dataOfLike , isPending:Pending , isError:HasError , error:errorOfLik
     }
   return <>
 {/* <CreateCommentCard PostId={posts.id}/> */}
- <div className="bg-gray-200 p-4 rounded w-1/2 mx-auto mb-5 mt-3 shadow">
+
+ <div className="bg-gray-200 p-4 rounded  border-t-4 border-sky-500 w-1/2 mx-auto mb-8 mt-5 shadow">
   <header className="flex justify-between items-center space-x-3 mb-3">
     <Link to={`/PostDetails/${posts.id}`}>    <div className='flex items-center '>
+      
     <img className='w-10 h-10 rounded-full' src={posts.user.photo} alt={posts.user.name} />
     <div>
       <p className="font-semibold">{posts.user.name}</p>
@@ -94,32 +130,23 @@ const {data:dataOfLike , isPending:Pending , isError:HasError , error:errorOfLik
       <span >{posts.likesCount <= 0 ? "" : posts.likesCount+" Like"  }  </span>
     </button>
       {/* like comment */}
-    <button  className="flex cursor items-center space-x-1 hover:text-blue-600">
+    <button  onClick={click}  className="flex cursor  items-center  space-x-1 hover:text-blue-600">
       
       <FaComment size={20}/>
       <span>Comment</span>
     </button>
     {/* like share */}
-    <button className="flex cursor items-center space-x-1 hover:text-blue-600">
+    <button onClick={ShareFunc} className="flex cursor items-center space-x-1 hover:text-blue-600">
       <FaShare size={20}/>
       <span className='cursor'>{posts.sharesCount <= 0 ? "" : posts.sharesCount+" Share" } </span>
     </button>
   </div>
-  <CreateCommentCard PostId={posts.id} queryKey={isSinglePost? ['getPostComments'] : ['getAllPosts']}/>
+  <CreateCommentCard Change={Change} PostId={posts.id} queryKey={isSinglePost? ['getPostComments'] : ['getAllPosts']}/>
   {/* <CommentCard comment={posts?.topComment}/> */}
   {/* {posts.topcomment && <CommentCard comment={posts?.topComment}/>} */}
   {!isSinglePost ? <CommentCard comment={posts?.topComment}/> : data?.data.data.comments.map((comment)=>{return <CommentCard key={comment._id} comment={comment}/>})}
   {/* {data?.data.data.comments.map((comment)=>{return <CommentCard comment={comment}/>})} */}
 </div>
 
-
-  
-  
-  
-  
-  
-  
-  
-  
   </>
 }

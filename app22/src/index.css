@@ -240,3 +240,12 @@ transform:rotate(360deg) ;
 color: red;
 cursor: pointer;
 }
+.edite{
+border: none ;
+padding: 0 ;
+background-color: transparent;
+color: #000 ;
+}
+.edite:hover{
+  color: #00A6F4;
+}

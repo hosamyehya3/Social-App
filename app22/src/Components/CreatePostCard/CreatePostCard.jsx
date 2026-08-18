@@ -52,7 +52,6 @@ query.invalidateQueries({queryKey : ['getAllPosts'] })
 })
 
   function handleCloseImage() {
-    console.log(55);
     setupLoadedImg(null)
     image.current.value = null
   }

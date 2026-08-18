@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom'
 
 export default function CommentCard({comment}) {
 
-   console.log(comment?._id); //////
    
     
     
