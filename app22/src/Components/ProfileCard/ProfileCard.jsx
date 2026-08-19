@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import img2 from '../../assets/avatar55.webp'
+import { Header } from '@heroui/react';
 export default function ProfileCard({ userData }) {
 
   const dataBirth = userData?.dateOfBirth;
@@ -61,6 +62,9 @@ export default function ProfileCard({ userData }) {
 
   return (
     <>
+    <Header>
+      <title>Profile</title>
+    </Header>
       <form onSubmit={handleSubmit(createPhoto)}>
         <section className="flex justify-center text-sky-500 items-center min-h-screen p-4">
           <div className="max-w-md w-full bg-white/10 backdrop-blur-lg rounded-3xl shadow-2xl transform hover:scale-[1.02] transition-transform duration-500 ease-in-out p-8 relative overflow-hidden border border-white/20">

@@ -52,7 +52,7 @@ console.log(userData?.photo);
           <svg className="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width={24} height={24} fill="none" viewBox="0 0 24 24"><path stroke="currentColor" strokeLinecap="round" strokeWidth={2} d="M5 7h14M5 12h14M5 17h14" /></svg>
         </button>
         <div className={`${isopen ? 'hidden' : ''}  w-full md:flex md:justify-between`} id="navbar-default">
-          <ul className="font-medium flex mx-auto flex-col p-4 md:p-0 mt-4 border border-default rounded-base bg-neutral-secondary-soft md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-neutral-primary">
+          <ul className="font-medium flex mx-auto flex-col p-4 md:p-0 mt-4 border border-default rounded-base items-center bg-neutral-secondary-soft md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-neutral-primary">
             {userToken !== null ? <>
               <li>
                 <NavLink to={'/home'} className="block py-2 px-3 text-black bg-brand rounded md:bg-transparent md:text-fg-brand md:p-0" aria-current="page">Home</NavLink>

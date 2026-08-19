@@ -7,6 +7,7 @@ import Spinner from '../Spinner/Spinner'
 
 export default function PostDetails() {
 let {id} = useParams()
+console.log(id);
 
     function getPostsDetails(){
       return  axios.get(`https://route-posts.routemisr.com/posts/${id}` , {

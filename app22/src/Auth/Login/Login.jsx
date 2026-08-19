@@ -8,8 +8,7 @@ import {zodResolver} from '@hookform/resolvers/zod'
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthContext';
 import img from '../../assets/couple-users-in-smartphones-with-social-media-icons-vector.jpg'
-
-
+import {Helmet} from "react-helmet";
 
 
 
@@ -65,7 +64,9 @@ let navigate = useNavigate()
 
   return (
     <>
-
+      <Helmet>
+      <title>Login</title>
+      </Helmet>
 
     
       <div className="bg-gray-200  sm:block md:block lg:flex  sm:w-full  md:w-full min-h-screen  gap-5 justify-between items-center p-5 ">

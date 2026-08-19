@@ -56,7 +56,7 @@ query.invalidateQueries({queryKey : ['getAllPosts'] })
     image.current.value = null
   }
   return (
-    <div className="bg-gray-100 p-4 rounded shadow w-1/2 mx-auto mb-5 mt-4">
+    <div className="bg-gray-100 p-4 rounded border-1 border-sky-500 shadow w-1/2 mx-auto mb-5 mt-4">
       <div className='flex gap-4 p-2 items-center'>
         <Avatar>
           {userData?<> <Avatar.Image alt="John Doe" src={userData?.photo} /></> : <>

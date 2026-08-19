@@ -7,6 +7,7 @@ import Spinner from '../Spinner/Spinner';
 import { useQuery } from '@tanstack/react-query';
 import CreatePostCard from '../CreatePostCard/CreatePostCard';
 import useApi from '../../useApi';
+import { Header } from '@heroui/react';
 
 
 export default function Home() {
@@ -64,7 +65,8 @@ export default function Home() {
 function getposts(){
   return axios.get('https://route-posts.routemisr.com/posts' ,{
     params : {
-      limit : 100 
+      limit : 100 ,
+      
       
     } ,
     headers:{
@@ -89,6 +91,7 @@ const {data , error , isError , isLoading} = useQuery({
 })
 
 // const {data , error , isError , isLoading} =  useApi()
+console.log(data);
 
 if ( isLoading ) {  
   return <Spinner/>
@@ -100,6 +103,9 @@ if (error) {
   </div>
 }
   return <>
+  <Header>
+    <title>Home</title>
+  </Header>
   <CreatePostCard/>
 {data?.data.data.posts?.map((post)=>{return <PostCard isSinglePost={false} key={post._id} posts={post}/>})}
   

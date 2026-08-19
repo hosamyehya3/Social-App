@@ -145,7 +145,7 @@ import { email, float64 } from 'zod/v4-mini';
 import {zodResolver} from '@hookform/resolvers/zod'
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthContext';
-
+import {Helmet} from "react-helmet";
 
 
 
@@ -225,6 +225,10 @@ let navigate = useNavigate()
 
   return (
     <>
+<Helmet>
+      <title>Reigster</title>
+      </Helmet>
+    
             <div class="">
   
 </div>
@@ -234,7 +238,7 @@ let navigate = useNavigate()
       <div className='bubble-right bubbleSlow2'></div>
       <div className='bubble-right2 bubbleSlow2'></div>
       <div className='bubble-right bubbleSlow'></div>
-        <div className="bg-white w-1/2 mx-auto rounded-md action  p-7">
+        <div className="bg-white sm:w-full md:w-3/4  lg:w-1/2 mx-auto rounded-md action  p-7">
           <h2 className='text-center text-2xl font-bold text-sky-500 my-4'>Register Now</h2>
           
           <form onSubmit={handleSubmit(submitForm)}>

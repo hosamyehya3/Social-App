@@ -14,6 +14,10 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import PostDetails from './Components/PostDetails/PostDetails';
  import { ToastContainer } from 'react-toastify';
 import Notifications from './Components/Notifications/Notifications';
+import { useNetworkState } from 'react-use';
+import GetUserProfile from './Components/GetUserProfile/GetUserProfile';
+
+
 
 const queryClient = new QueryClient()
 let router= createBrowserRouter([
@@ -25,16 +29,24 @@ let router= createBrowserRouter([
     {path : 'Notifications' , element : <ProtectRoute><Notifications/></ProtectRoute>},
      {path : 'home' , element : <ProtectRoute><Home/></ProtectRoute>},
      {path : 'PostDetails/:id' , element : <ProtectRoute><PostDetails/></ProtectRoute>},
+     {path : 'getuserprofile/:id' , element : <ProtectRoute><GetUserProfile/></ProtectRoute>},
      {path : '*' , element : <NotFound/>},
   ]}
 ])
 
-
-
-
 function App() {
+  const {online} = useNetworkState()
+console.log(online);
   return <>
-<QueryClientProvider client={queryClient}>
+
+    
+    {!online?<>
+    <div className='h-screen w-full flex justify-center items-center font-bold text-3xl text-white bg-sky-500'>
+      <h2>Not Online </h2>
+    </div>
+    </> : ""}
+    
+    <QueryClientProvider client={queryClient}>
 <AuthContextProvider>
     <CounterContextProvider>
   <RouterProvider router={router} />
@@ -44,6 +56,11 @@ function App() {
 </AuthContextProvider>
 
 </QueryClientProvider>
+    
+    
+    
+   
+
   </>
 
 }

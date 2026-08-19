@@ -4,6 +4,7 @@ import React, { useEffect } from 'react'
 import { data } from 'react-router-dom'
 import Spinner from '../Spinner/Spinner'
 import NotifactionsCard from '../NotifactionsCard/NotifactionsCard'
+import { Header } from '@heroui/react'
 
 export default function Notifications() {
   function GetNotifications(){
@@ -41,6 +42,9 @@ if (isError) {
   
   
   return <>
+  <Header>
+    <title>Notifications</title>
+  </Header>
 {data == null? <>
 <div className='flex justify-center italic h-screen text-sky-500 text-4xl font-bold items-center'>
   <h2>No Notifications</h2>

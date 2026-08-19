@@ -170,7 +170,7 @@ visibility: visible;
 }
 .boxProfile:hover{
   transform: translateY(-2px);
-  background-image: linear-gradient( rgb(85, 85, 228) , rgb(30, 30, 126));
+  background-image: linear-gradient( rgb(85, 85, 228) , #0ea5e9);
   cursor: pointer;
   color: #fff;
   border:  1px  solid #fff;
@@ -248,4 +248,7 @@ color: #000 ;
 }
 .edite:hover{
   color: #00A6F4;
+}
+.UserProfile:hover .UserProfileHx{
+  background-image: linear-gradient(to right , #0284c7 , white);
 }
