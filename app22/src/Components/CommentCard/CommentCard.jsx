@@ -16,7 +16,9 @@ export default function CommentCard({comment}) {
       <div className="text-sm">{comment?.createdAt}</div>
     </div>
   </div>
+  <p className='text-sm leading-relaxed mb-6'> {comment?.content}</p>
   <p className="text-sm leading-relaxed mb-6">
+
     <img className='w-1/2 mx-auto justify-center items-center rounded-2xl' src={comment?.image} alt="" />
     </p>
   <div className="flex justify-between items-center hide">
