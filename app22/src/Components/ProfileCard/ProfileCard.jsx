@@ -1,5 +1,5 @@
 
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import img2 from '../../assets/avatar55.webp'
 import { Header } from '@heroui/react';
 export default function ProfileCard({ userData }) {
-
+const query = useQueryClient()
   const dataBirth = userData?.dateOfBirth;
   const newDate = dataBirth && !isNaN(new Date(dataBirth))
     ? new Date(dataBirth).toLocaleDateString('en-US', {
@@ -40,6 +40,11 @@ export default function ProfileCard({ userData }) {
     mutationFn: getiImgProfile,
     onSuccess: () => {
       toast.success('Photo Updated Successfully');
+      query.invalidateQueries({queryKey : 'getAllPosts' })
+      query.invalidateQueries({queryKey : 'getiImgProfile' })
+      query.invalidateQueries({queryKey : 'getSinglePost' })
+        
+     
     },
     onError: () => {
       toast.error('Can Not Update Photo');

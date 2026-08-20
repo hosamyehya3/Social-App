@@ -5,29 +5,43 @@ import img2 from "../../assets/avatar55.webp";
 import { AuthContext } from '../../Context/AuthContext';
 
 export default function Navbar() {
+const Navbar = document.getElementById('nav');
+  
   let { userToken, setuserToken, userData } = useContext(AuthContext)
   let navigate = useNavigate()
-  const [isopen, setisopen] = useState(false)
+  const [isopen, setisopen] = useState(true)
   function LogOut() {
     setuserToken(null)
     localStorage.removeItem('token')
     navigate('/login')
   }
-console.log(userData?.photo);
+  console.log(userData?.photo);
+
 
   function toggleNav() {
+
     if (isopen) {
       setisopen(false)
+const bodyElement = document.body.classList.add('bg-black')
+localStorage.setItem('light' , JSON.stringify(isopen))
 
+ Navbar.classList.add('BG');
     } else {
       setisopen(true)
+localStorage.setItem('dark' , JSON.stringify(isopen))
+const bodyElement = document.body.classList.remove('bg-black')
+Navbar.classList.remove('BG');
 
     }
   }
+
+
+
+
   return <>
 
-    <nav className="bg-neutral-primary   w-full glass   border-b border-default">
-      <div className="max-w-screen-xl md:gap-10 flex md:flex-nowrap flex-wrap items-center justify-between mx-auto p-4">
+    <nav  className=" w-full glass   border-b border-default">
+      <div id='nav' className="w-full  md:gap-10 flex md:flex-nowrap flex-wrap items-center justify-between mx-auto p-4">
         <span className="flex items-center space-x-3 rtl:space-x-reverse">
           <img src={img} className="h-7" alt="Flowbite Logo" />
           <span className="self-center text-xl text-heading font-semibold whitespace-nowrap">SOCIAL APP</span>
@@ -35,15 +49,16 @@ console.log(userData?.photo);
 
 
 
-        {/* <button onClick={toggleTheme}
+        <button onClick={toggleNav}
           className="h-10 w-10 rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-gray-700">
-          <svg className="fill-violet-700 block dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+            {!isopen ? <>   <svg className="fill-violet-700 " fill="currentColor" viewBox="0 0 20 20">
             <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
-          </svg>
-          <svg className="fill-yellow-500 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+          </svg></> : <>   <svg className="fill-yellow-500 " fill="currentColor" viewBox="0 0 20 20">
             <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fillRule="evenodd" clipRule="evenodd" />
-          </svg>
-        </button> */}
+          </svg></>}
+       
+       
+        </button>
 
 
 
@@ -77,22 +92,24 @@ console.log(userData?.photo);
 
 
           </ul>
+          {userData?.photo ? <>
+            {localStorage.getItem('token') !== null ? <>
+              <Link to={'/profile'}>
+                <div className='hidden md:flex lg:flex px-5 boxProfile px-2 bg-transparent font-semibold py-2  flex items-center justify-center '>
+                  {userData?.name}
 
-          {localStorage.getItem('token') !== null ? <>
-            <Link to={'/profile'}>
-              <div className='hidden md:flex lg:flex px-5 boxProfile px-2 bg-transparent font-semibold py-2  flex items-center justify-center '>
-                {userData?.name}
+                  <div className='  w-[30px]'>
+                    {userData ? <>       {userData.photo == "" ? <>
+                      <img className='border rounded-3xl mx-2 ' src={img2} alt="" />
+                    </> : <><img className='border  rounded-3xl mx-2' src={userData?.photo} alt="" /></>} </> : ""}
 
-                <div className='  w-[30px]'>
-                  {userData ? <>       {userData.photo == "" ? <>
-                    <img className='border rounded-3xl mx-2 ' src={img2} alt="" />
-                  </> : <><img className='border  rounded-3xl mx-2' src={userData?.photo} alt="" /></>} </> : ""}
+                  </div>
 
-                </div>
 
-                
 
-              </div></Link></> : ""}
+                </div></Link></> : ""}
+          </> : null}
+
 
         </div>
 
