@@ -1,13 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { CounterContext, CounterContextProvider } from '../../Context/CounterContext';
 import axios from 'axios';
 import PostCard from '../../PostCard/PostCard';
-import { id } from 'zod/v4/locales';
 import Spinner from '../Spinner/Spinner';
 import { useQuery } from '@tanstack/react-query';
 import CreatePostCard from '../CreatePostCard/CreatePostCard';
-import useApi from '../../useApi';
-import { Header } from '@heroui/react';
+import CreateCardForFollowers from '../CreateCardForFollowers/CreateCardForFollowers';
 
 
 export default function Home() {
@@ -76,7 +72,7 @@ function getposts(){
   })
 }
 
-const {data , error , isError , isLoading} = useQuery({
+const {data , error  , isLoading} = useQuery({
   queryKey:['getAllPosts'] ,
   queryFn : getposts ,
   staleTime : 3000 ,
@@ -90,8 +86,23 @@ const {data , error , isError , isLoading} = useQuery({
 
 })
 
-// const {data , error , isError , isLoading} =  useApi()
-console.log(data);
+
+
+    function getFollowSuggestions(){
+    return axios.get(`https://route-posts.routemisr.com/users/suggestions?limit=5` , {
+        headers :{
+            Authorization : `Bearer ${localStorage.getItem('token')}`
+        }
+    })
+}
+const {data:dataOfFollow } = useQuery({
+    queryKey : ['GetTheFollowSuggestions'] ,
+    queryFn : getFollowSuggestions 
+})
+
+const Suggestions = dataOfFollow?.data.data.suggestions
+
+
 
 if ( isLoading ) {  
   return <Spinner/>
@@ -103,11 +114,21 @@ if (error) {
   </div>
 }
   return <>
-  <Header>
-    <title>Home</title>
-  </Header>
-  <CreatePostCard/>
+<div className = 'relative'>
+ <CreatePostCard/>
+ <div className ='modifyFollow'>
+<CreateCardForFollowers Suggestions={Suggestions}/>
+ </div>
 {data?.data.data.posts?.map((post)=>{return <PostCard isSinglePost={false} key={post._id} posts={post}/>})}
-  
+
+
+</div>
+ 
+
+
+
+
+ 
+
   </>
 }

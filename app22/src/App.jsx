@@ -36,7 +36,6 @@ let router= createBrowserRouter([
 
 function App() {
   const {online} = useNetworkState()
-console.log(online);
   return <>
 
     

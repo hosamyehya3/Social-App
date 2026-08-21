@@ -129,7 +129,7 @@ export default function PostCard({ posts, isSinglePost = false }) {
 
     <div className="bg-gray-200 p-4 rounded  border-t-4 border-sky-500 sm:w-3/4 md:w-1/2 lg:w-1/2 mx-auto mb-8 mt-5 shadow">
       <header className="flex justify-between items-center space-x-3 mb-3">
-        <Link to={`/PostDetails/${posts.id}`}>    <div className='flex items-center '>
+        <Link to={`/GetUserProfile/${posts.user._id}`}>    <div className='flex items-center '>
           <img className='w-10 h-10 rounded-full' src={posts.user?.photo} alt="" />
           <div>
             <p className="font-semibold">{posts.user.name}</p>
@@ -147,12 +147,11 @@ export default function PostCard({ posts, isSinglePost = false }) {
           {userData?.id === posts?.user._id ? <><DropDown PostId={posts.id} /> </> : ""}
         </div>
       </header>
-      <Link to={`/GetUserProfile/${posts.user._id}`}>
+      <Link to={`/PostDetails/${posts.id}`}>
         {posts.body && <p className="mb-3">{posts.body}</p>}
 
         {posts.image && <img src={posts.image} alt="" className="rounded max-h-96 w-full object-cover mb-3" />}
       </Link>
-
 
 
       <div className="flex justify-between text-gray-600 text-sm font-semibold">

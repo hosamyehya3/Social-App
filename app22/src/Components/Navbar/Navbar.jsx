@@ -15,7 +15,6 @@ const Navbar = document.getElementById('nav');
     localStorage.removeItem('token')
     navigate('/login')
   }
-  console.log(userData?.photo);
 
 
   function toggleNav() {

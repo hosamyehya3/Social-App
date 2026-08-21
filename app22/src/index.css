@@ -255,3 +255,53 @@ color: #000 ;
 .BG{
   background-color: white !important;
 }
+.modifyFollow{
+  position: absolute;
+  top: -15px;
+  right: 0;
+}
+.following{
+  margin-right: -290px;
+  overflow: hidden;
+  border-left: 10px solid #00A6F4 ;
+  position: relative;
+  transition: all 1s linear;
+}
+.following::after{
+  content: "";
+width: 300px;
+height:160px;
+  background:linear-gradient(to left , rgba(255, 255, 255, 0.808) , rgba(255, 255, 255, 0.336) ) ;
+ position: absolute;
+  right:0 ; 
+  top: 0 ;
+  overflow: hidden;
+  border-radius: 10px;
+  
+}
+.following:hover::after{
+  content: "";
+width: 0;
+height:0;
+  right:0 ; 
+  top: 0 ;
+}
+.following:hover{
+    margin-right: 0;
+  background-color: #00A6F4 ;
+    border-left: 10px solid #fff ;
+    box-shadow: 0 0 10px #000;
+}
+.following:hover button {
+  background-color: white;
+ color: #000;
+
+ 
+}
+.following:hover .callColor{
+ color: white;
+}
+.following:hover .circle{
+  border: 2px solid white;
+}
+

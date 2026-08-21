@@ -1,3 +1,4 @@
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 
@@ -10,7 +11,7 @@ let {data} = await axios.get('https://route-posts.routemisr.com/users/profile-da
     }
 })
 setuserData(data.data.user)
-console.log(data);
+
 
 
 
@@ -27,7 +28,8 @@ useEffect(()=>{
 
 
 
-    return <AuthContext.Provider value={{userToken , setuserToken , userData}}>
+
+    return <AuthContext.Provider value={{userToken , setuserToken  , userData}}>
        {props.children}     
     </AuthContext.Provider>
 
